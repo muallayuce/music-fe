@@ -1,6 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
 function Profile() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    
+    localStorage.removeItem("access_token");  
+    localStorage.removeItem("refresh_token"); 
+    navigate("/"); 
+  };
+
+  const handleEdit = () => {
+    navigate("/edit-profile");
+  };
+
   return (
     <div className="profile-container">
       <h2 className="profile-header">My Profile</h2>
@@ -8,7 +22,7 @@ function Profile() {
       {/* Profile Pic */}
       <div className="profile-pic-container">
         <img
-          src="https://via.placeholder.com/15" // Use your profile pic here
+          src="https://via.placeholder.com/150" 
           alt="Profile"
           className="profile-pic"
         />
@@ -29,6 +43,12 @@ function Profile() {
           <li>Song 2 - Artist 2</li>
           <li>Song 3 - Artist 3</li>
         </ul>
+      </div>
+
+      {/* Edit and Logout Buttons */}
+      <div className="profile-buttons">
+        <button onClick={handleEdit} className="edit-btn">Edit Profile</button>
+        <button onClick={handleLogout} className="logout-btn">Log Out</button>
       </div>
     </div>
   );

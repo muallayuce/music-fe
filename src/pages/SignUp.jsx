@@ -61,14 +61,48 @@ if (!password) {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("User signed up:", email);
-      navigate("/profile");
+      try {
+        
+        const response = await fetch("http://127.0.0.1:8000/api/users/register/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            email: email,
+            password: password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log("User signed up:", email);
+          navigate("/profile"); 
+        } else {
+          setErrors({
+            email: data.email || "",
+            username: data.username || "",
+            password: data.password || "",
+          });
+        }
+      } catch (error) {
+        console.error("Error during sign-up:", error);
+        setErrors({
+          email: "An error occurred. Please try again later.",
+          username: "",
+          password: "",
+        });
+      }
     }
   };
+
+  
 
   return (
     <div className="signup-container">

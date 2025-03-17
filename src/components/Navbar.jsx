@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+ 
+  const isLoggedIn = localStorage.getItem("access_token");
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -14,9 +17,17 @@ function Navbar() {
 
         {/* Right side links */}
         <div className="navbar-links-right">
-          <Link to="/profile" className="navbar-link">Profile</Link>
-          <Link to="/signin" className="navbar-link">Sign In</Link>
-          <Link to="/signup" className="navbar-link">Sign Up</Link>
+         
+          {isLoggedIn ? (
+            <>
+              <Link to="/profile" className="navbar-link">Profile</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signin" className="navbar-link">Sign In</Link>
+              <Link to="/signup" className="navbar-link">Sign Up</Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

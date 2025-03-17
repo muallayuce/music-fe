@@ -3,24 +3,24 @@ import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 
 function SignIn() {
-  const [emailOrUsername, setEmailOrUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
-    emailOrUsername: "",
+    username: "",
     password: "",
   });
   const navigate = useNavigate();
 
   const validateForm = () => {
     let isValid = true;
-    const newErrors = { emailOrUsername: "", password: "" };
+    const newErrors = { username: "", password: "" };
 
-    // Email or Username validation (check if the value is an email or a valid username)
-    if (!emailOrUsername) {
-      newErrors.emailOrUsername = "Email or Username is required.";
+    // Username validation
+    if (!username) {
+      newErrors.username = "Username is required.";
       isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(emailOrUsername) && emailOrUsername.length < 3) {
-      newErrors.emailOrUsername = "Please enter a valid email or username.";
+    } else if (username.length < 3) {
+      newErrors.username = "Username must be at least 3 characters long.";
       isValid = false;
     }
 
@@ -37,12 +37,45 @@ function SignIn() {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("User signed in:", emailOrUsername);
-      navigate("/profile");
+      try {
+       
+        const response = await fetch("http://127.0.0.1:8000/api/users/login/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username, 
+            password: password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          
+          localStorage.setItem("access_token", data.access); 
+          localStorage.setItem("refresh_token", data.refresh); 
+          console.log("User signed in:", username);
+          navigate("/profile"); 
+        } else {
+          
+          setErrors({
+            username: data.detail || "Invalid credentials",
+            password: "",
+          });
+        }
+      } catch (error) {
+        console.error("Error during sign in:", error);
+        setErrors({
+          username: "An error occurred. Please try again later.",
+          password: "",
+        });
+      }
     }
   };
 
@@ -53,12 +86,12 @@ function SignIn() {
         <div className="form-group">
           <input
             type="text"
-            placeholder="Email or Username"
-            value={emailOrUsername}
-            onChange={(e) => setEmailOrUsername(e.target.value)}
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
-          {errors.emailOrUsername && <span className="error">{errors.emailOrUsername}</span>}
+          {errors.username && <span className="error">{errors.username}</span>}
         </div>
         <div className="form-group">
           <input
