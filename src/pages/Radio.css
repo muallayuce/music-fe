@@ -1,0 +1,208 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1a1a;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.radio-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #282828;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.radio-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #4f84ff;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.radio-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.play-all-btn {
+  background-color: #4f84ff;
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.play-all-btn:hover {
+  background-color: #3578e5;
+  transform: scale(1.05);
+}
+
+.radio-stations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.station-item {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.station-item:hover {
+  transform: translateY(-5px);
+  background-color: #444;
+}
+
+.station-item.active {
+  background-color: #4f84ff;
+}
+
+.station-description {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.station-item button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.station-item .play-btn {
+  background-color: #4f84ff;
+  color: white;
+  margin-right: 10px;
+}
+
+.station-item .play-btn:hover {
+  background-color: #3578e5;
+}
+
+.station-item .favorite-btn {
+  background-color: #ffb74d;
+  color: white;
+}
+
+.station-item .favorite-btn:hover {
+  background-color: #ff9800;
+}
+
+.favorite-btn.bg-yellow-500 {
+  background-color: #ffb74d;
+}
+
+.stop-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.stop-btn:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+.volume-control {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.volume-control label {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.volume-slider {
+  width: 100%;
+  height: 8px;
+  background-color: #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.now-playing {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.now-playing h3 {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .radio-container {
+    padding: 15px;
+  }
+
+  .radio-title {
+    font-size: 2rem;
+  }
+
+  .station-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .station-item .play-btn, 
+  .station-item .favorite-btn {
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  .volume-slider {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .radio-title {
+    font-size: 1.8rem;
+  }
+
+  .station-item {
+    padding: 10px;
+  }
+
+  .stop-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .volume-slider {
+    width: 70%;
+  }
+}

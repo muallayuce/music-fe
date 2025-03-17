@@ -1,0 +1,91 @@
+/* Home Page Styling */
+.home-container {
+  background-color: #242424;
+  color: #fff;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.welcome-heading {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #4f84ff;
+}
+
+.welcome-text {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+}
+
+.featured-section,
+.new-releases-section {
+  margin-top: 3rem;
+}
+
+.featured-heading,
+.new-releases-heading {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #4f84ff;
+  text-align: center;
+}
+
+.featured-music,
+.new-releases {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.music-card,
+.release-card {
+  background-color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.music-card:hover,
+.release-card:hover {
+  transform: scale(1.05);
+}
+
+.music-img,
+.release-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.music-title,
+.release-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.music-artist {
+  font-size: 1rem;
+  color: #b0b0b0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .featured-music,
+  .new-releases {
+    flex-direction: column;
+    align-items: center;
+  }
+}
